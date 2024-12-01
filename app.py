@@ -1,3 +1,5 @@
+import sys
+!{sys.executable} -m pip install --upgrade pip
 # app.py
 
 import streamlit as st
