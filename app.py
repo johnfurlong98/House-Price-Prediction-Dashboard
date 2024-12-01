@@ -30,8 +30,8 @@ def check_file_exists(file_path, description):
 # Load models and data with error handling
 @st.cache_data
 def load_data():
-    data_path = BASE_DIR / 'data' / 'house_prices_records.csv'
-    inherited_houses_path = BASE_DIR / 'data' / 'inherited_houses.csv'
+    data_path = BASE_DIR / 'dashboard' / 'data' / 'house_prices_records.csv'
+    inherited_houses_path = BASE_DIR / 'dashboard' / 'data' / 'inherited_houses.csv'
     
     # Check if files exist
     check_file_exists(data_path, "house_prices_records.csv")
@@ -53,7 +53,7 @@ def load_data():
 
 @st.cache_resource
 def load_models():
-    models_dir = BASE_DIR / 'notebook' / 'data' / 'models'
+    models_dir = BASE_DIR / 'dashboard' / 'notebook' / 'data' / 'models'
     
     # Check if models directory exists
     if not models_dir.exists():
