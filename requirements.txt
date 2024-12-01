@@ -5,7 +5,7 @@ joblib==1.2.0
 matplotlib==3.7.1
 seaborn==0.13.0
 scipy==1.11.0
-scikit-learn==1.2.0
+scikit-learn
 packaging==24.1
 wheel==0.44.0
 # Uncomment the following line if you're using XGBoost
