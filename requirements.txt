@@ -5,4 +5,3 @@ joblib==1.2.0
 matplotlib==3.7.1
 seaborn==0.12.2
 scipy==1.10.1
-# Removed pickle5==0.0.12 as Python 3.12 includes improved pickle support
