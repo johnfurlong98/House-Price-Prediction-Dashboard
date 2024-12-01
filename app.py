@@ -1,6 +1,10 @@
-import sys
-!{sys.executable} -m pip install --upgrade pip
+
 # app.py
+import subprocess
+import sys
+
+# Upgrade pip
+subprocess.check_call([sys.executable, "-m", "pip", "install", "--upgrade", "pip"])
 
 import streamlit as st
 import pandas as pd
