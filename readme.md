@@ -1,230 +1,224 @@
 # House Price Prediction Dashboard
 
-## Dataset Content
+## Project Overview
 
-* The dataset is sourced from [Kaggle](https://www.kaggle.com/codeinstitute/housing-prices-data). We created a fictitious user story where predictive analytics can be applied in a real project in the workplace.
-* The dataset has almost 1,500 rows and represents housing records from Ames, Iowa. It includes house profiles (e.g., Floor Area, Basement, Garage, Kitchen, Lot, Porch, Wood Deck, Year Built) and their respective sale prices for houses built between 1872 and 2010.
+This project implements a **House Price Prediction Dashboard** to predict house sale prices in Ames, Iowa, based on historical housing data. The solution is tailored for **Lydia Doe**, who inherited properties in Ames and seeks accurate sale price predictions to maximize her profits. The dashboard offers insights into key factors affecting house prices and enables real-time predictions for any house in Ames.
 
-| Variable          | Meaning                                                   | Units                                                                                                                                                                                                                                                                     |
-|-------------------|-----------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **1stFlrSF**      | First Floor square feet                                   | 334 - 4,692                                                                                                                                                                                                                                                              |
-| **2ndFlrSF**      | Second-floor square feet                                  | 0 - 2,065                                                                                                                                                                                                                                                                |
-| **BedroomAbvGr**  | Bedrooms above grade (does NOT include basement bedrooms) | 0 - 8                                                                                                                                                                                                                                                                     |
-| **BsmtExposure**  | Refers to walkout or garden level walls                   | Gd: Good Exposure; Av: Average Exposure; Mn: Minimum Exposure; No: No Exposure; None: No Basement                                                                                                                                                                         |
-| **BsmtFinType1**  | Rating of basement finished area                          | GLQ: Good Living Quarters; ALQ: Average Living Quarters; BLQ: Below Average Living Quarters; Rec: Average Rec Room; LwQ: Low Quality; Unf: Unfinished; None: No Basement                                                                                                  |
-| **BsmtFinSF1**    | Type 1 finished square feet                               | 0 - 5,644                                                                                                                                                                                                                                                                 |
-| **BsmtUnfSF**     | Unfinished square feet of basement area                   | 0 - 2,336                                                                                                                                                                                                                                                                 |
-| **TotalBsmtSF**   | Total square feet of basement area                        | 0 - 6,110                                                                                                                                                                                                                                                                 |
-| **GarageArea**    | Size of garage in square feet                             | 0 - 1,418                                                                                                                                                                                                                                                                 |
-| **GarageFinish**  | Interior finish of the garage                             | Fin: Finished; RFn: Rough Finished; Unf: Unfinished; None: No Garage                                                                                                                                                                                                      |
-| **GarageYrBlt**   | Year garage was built                                     | 1900 - 2010                                                                                                                                                                                                                                                               |
-| **GrLivArea**     | Above grade (ground) living area square feet              | 334 - 5,642                                                                                                                                                                                                                                                               |
-| **KitchenQual**   | Kitchen quality                                           | Ex: Excellent; Gd: Good; TA: Typical/Average; Fa: Fair; Po: Poor                                                                                                                                                                                                          |
-| **LotArea**       | Lot size in square feet                                   | 1,300 - 215,245                                                                                                                                                                                                                                                           |
-| **LotFrontage**   | Linear feet of street connected to property               | 21 - 313                                                                                                                                                                                                                                                                  |
-| **MasVnrArea**    | Masonry veneer area in square feet                        | 0 - 1,600                                                                                                                                                                                                                                                                 |
-| **EnclosedPorch** | Enclosed porch area in square feet                        | 0 - 286                                                                                                                                                                                                                                                                   |
-| **OpenPorchSF**   | Open porch area in square feet                            | 0 - 547                                                                                                                                                                                                                                                                   |
-| **OverallCond**   | Rates the overall condition of the house                  | 10: Very Excellent; 9: Excellent; 8: Very Good; 7: Good; 6: Above Average; 5: Average; 4: Below Average; 3: Fair; 2: Poor; 1: Very Poor                                                                                                                                   |
-| **OverallQual**   | Rates the overall material and finish of the house        | 10: Very Excellent; 9: Excellent; 8: Very Good; 7: Good; 6: Above Average; 5: Average; 4: Below Average; 3: Fair; 2: Poor; 1: Very Poor                                                                                                                                   |
-| **WoodDeckSF**    | Wood deck area in square feet                             | 0 - 736                                                                                                                                                                                                                                                                   |
-| **YearBuilt**     | Original construction date                                | 1872 - 2010                                                                                                                                                                                                                                                               |
-| **YearRemodAdd**  | Remodel date (same as construction date if no remodeling or additions) | 1950 - 2010                                                                                                                                                                                                                                                    |
-| **SalePrice**     | Sale Price                                                | \$34,900 - \$755,000                                                                                                                                                                                                                                                      |
+---
+
+## Dataset
+
+The dataset is sourced from [Kaggle](https://www.kaggle.com/codeinstitute/housing-prices-data) and includes approximately **1,500 rows** of data on houses built between **1872 and 2010** in Ames, Iowa. Features encompass house attributes such as size, quality, year built, and sale price.
+
+### Key Features
+
+| Feature           | Description                                               | Values/Units                                                                                                           |
+|-------------------|-----------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------|
+| **1stFlrSF**      | First-floor square footage                                | 334 - 4,692                                                                                                          |
+| **2ndFlrSF**      | Second-floor square footage                               | 0 - 2,065                                                                                                            |
+| **OverallQual**   | Overall material and finish quality                       | Ordinal scale: 1 (Very Poor) to 10 (Excellent)                                                                       |
+| **GrLivArea**     | Above-ground living area (sq. ft.)                        | 334 - 5,642                                                                                                          |
+| **YearBuilt**     | Year the house was built                                  | 1872 - 2010                                                                                                          |
+| **SalePrice**     | Sale price of the house                                   | \$34,900 - \$755,000                                                                                                 |
+
+---
 
 ## Business Requirements
 
-As a good friend, you are requested by your friend, **Lydia Doe**, who has received an inheritance from a deceased great-grandfather located in Ames, Iowa, to help in maximizing the sales price for the inherited properties.
+The project addresses two core objectives:
 
-Although Lydia has an excellent understanding of property prices in her own state and residential area, she fears that basing her estimates for property worth on her current knowledge might lead to inaccurate appraisals. What makes a house desirable and valuable where she comes from might not be the same in Ames, Iowa. She found a public dataset with house prices for Ames, Iowa, and has provided you with that.
+1. **Exploratory Analysis**:
+   - Identify key house attributes that influence `SalePrice`.
+   - Provide interactive visualizations to illustrate these relationships.
 
-**Business Requirements:**
+2. **Predictive Modeling**:
+   - Build robust machine learning models to predict house prices.
+   - Enable predictions for Lydia's inherited houses and other houses in Ames.
 
-1. **Discover Correlations:**
-   - The client is interested in discovering how the house attributes correlate with the sale price.
-   - She expects data visualizations of the correlated variables against the sale price to illustrate these relationships.
+---
 
-2. **Predict House Sale Prices:**
-   - The client is interested in predicting the house sale price for her four inherited houses.
-   - She also wants the ability to predict the sale price for any other house in Ames, Iowa.
-
-## Hypothesis and How to Validate
+## Hypotheses
 
 ### Hypothesis 1
+**Higher `OverallQual` leads to higher `SalePrice`.**
 
-**Higher overall quality of the house (`OverallQual`) leads to a higher sale price.**
-
-**Validation Plan:**
-
-- Calculate the correlation coefficient between `OverallQual` and `SalePrice`.
-- Create scatter plots and box plots to visualize the relationship.
-- Analyze the strength and significance of the correlation.
+- **Validation Approach**:
+  - Compute correlation coefficient between `OverallQual` and `SalePrice`.
+  - Visualize relationships using scatter and box plots.
 
 ### Hypothesis 2
+**Larger `GrLivArea` results in higher `SalePrice`.**
 
-**Larger living areas (`GrLivArea`) result in higher sale prices.**
-
-**Validation Plan:**
-
-- Compute the correlation between `GrLivArea` and `SalePrice`.
-- Plot `GrLivArea` against `SalePrice` using scatter plots.
-- Examine any outliers or anomalies that may affect the relationship.
+- **Validation Approach**:
+  - Compute correlation coefficient and generate scatter plots.
 
 ### Hypothesis 3
+**Recently remodeled houses (`YearRemodAdd`) have higher `SalePrice`.**
 
-**Houses that have been recently remodeled (`YearRemodAdd`) have higher sale prices.**
+- **Validation Approach**:
+  - Analyze trends of average sale prices over remodel years.
 
-**Validation Plan:**
+---
 
-- Assess the correlation between `YearRemodAdd` and `SalePrice`.
-- Use line plots to visualize average sale prices over remodel years.
-- Determine if newer remodel years correspond to higher prices.
+## Solution Design
 
-## The Rationale to Map the Business Requirements to the Data Visualizations and ML Tasks
+### 1. **Data Preprocessing**
 
-### Business Requirement 1
+- **Handling Missing Values**:
+  - **Numerical Features**: Replaced with **median** values to avoid skewness from extreme outliers.
+  - **Categorical Features**: Replaced with appropriate **default categories** (`None` for `GarageFinish`, `TA` for `KitchenQual`, etc.).
 
-**Data Visualization Tasks:**
+- **Skewness Handling**:
+  - Applied **log transformation** to reduce skewness in features like `SalePrice`.
+  - Used **Box-Cox transformation** for strictly positive features to achieve near-normal distribution.
 
-- Perform exploratory data analysis (EDA) to identify key features that correlate with `SalePrice`.
-- Use correlation matrices and heatmaps to present the strength of relationships.
-- Generate scatter plots, box plots, and line plots to visually explore the correlations.
-- These visualizations will help Lydia understand which attributes most significantly affect house prices in Ames, Iowa.
+- **Feature Engineering**:
+  - Created `TotalSF` as the sum of first-floor, second-floor, and basement areas.
+  - Introduced `Qual_TotalSF` as the product of `OverallQual` and `TotalSF` to capture combined effects of quality and size.
 
-### Business Requirement 2
+---
 
-**Machine Learning Tasks:**
+### 2. **Feature Selection**
 
-- Develop regression models to predict `SalePrice` based on house attributes.
-- Use the historical dataset to train models such as Linear Regression, Random Forest, and XGBoost.
-- Evaluate models using performance metrics (e.g., MAE, RMSE, R² Score) to select the best-performing model.
-- Apply the model to predict sale prices for Lydia's four inherited houses.
-- Provide a user interface (dashboard) where Lydia can input attributes of any house in Ames, Iowa, and get a predicted sale price.
+Feature selection was driven by **Random Forest feature importance**:
+- Selected the top **20 features** based on importance scores.
+- Ensured these features balance interpretability and predictive power.
 
-## ML Business Case
+---
 
-### Problem Statement
+### 3. **Model Training**
 
-Lydia needs an accurate and reliable method to estimate the sale prices of her inherited houses in Ames, Iowa, to maximize her profits and make informed decisions for future property investments.
+#### Models Tested
+1. **Linear Regression**:
+   - Baseline model with no regularization.
+   - Assumes linear relationships between features and `SalePrice`.
 
-### Proposed Solution
+2. **Ridge Regression**:
+   - Introduces L2 regularization to penalize large coefficients.
+   - Hyperparameter: `alpha` (range: \(10^{-3}\) to \(10^3\)) was tuned using **cross-validation**.
 
-Build a predictive regression model using historical house sale data from Ames, Iowa, to estimate the sale prices based on various house attributes.
+3. **Lasso Regression**:
+   - Employs L1 regularization to perform feature selection by shrinking less important features to zero.
+   - Hyperparameter: `alpha` (range: \(10^{-3}\) to \(10^{-0.5}\)) was tuned with cross-validation.
 
-### Expected Benefits
+4. **ElasticNet**:
+   - Combines L1 and L2 regularization.
+   - Hyperparameters: `alpha` and `l1_ratio` (tested values: 0.1, 0.5, 0.9) optimized via cross-validation.
 
-- **Accurate Pricing:** Helps Lydia avoid underpricing or overpricing her properties.
-- **Strategic Decision-Making:** Understanding key factors affecting house prices assists in making informed decisions.
-- **Future Investments:** The predictive model can be used for any house in Ames, Iowa, aiding future investment considerations.
+5. **Random Forest**:
+   - Ensemble model using decision trees.
+   - Parameters:
+     - `n_estimators` (number of trees): Set to **100**.
+     - `max_depth`: Unlimited, to capture complex relationships.
+     - `max_features`: Set to `sqrt` for efficient training.
 
-### Performance Goal
+6. **Gradient Boosting**:
+   - Ensemble model focusing on reducing errors of previous trees.
+   - Parameters:
+     - `n_estimators`: Set to **300**.
+     - `learning_rate`: Optimized at **0.05** for balance between training speed and accuracy.
 
-Achieve an **R² score of at least 0.75** on both the training and test sets to ensure the model's reliability.
+7. **XGBoost**:
+   - Highly efficient gradient boosting algorithm.
+   - Parameters:
+     - `n_estimators`: **300**.
+     - `learning_rate`: **0.05**.
+     - `max_depth`: **5** to avoid overfitting.
 
-### Model Inputs and Outputs
+#### Evaluation Metrics
+- **Mean Absolute Error (MAE)**: Measures average prediction error.
+- **Root Mean Squared Error (RMSE)**: Penalizes larger errors more heavily.
+- **R² Score**: Measures variance explained by the model.
 
-- **Inputs:** House attributes such as `OverallQual`, `GrLivArea`, `YearBuilt`, `TotalBsmtSF`, etc.
-- **Output:** Predicted sale price of the house.
+---
+
+### 4. **Model Evaluation**
+
+- **Best Performing Model**: **XGBoost**
+  - Achieved the lowest RMSE and highest R² score on both training and test sets.
+  - Selected for deployment due to its superior balance of accuracy and computational efficiency.
+
+---
 
 ## Dashboard Design
 
-The dashboard will be built using **Streamlit** and will include the following pages:
+### Streamlit Dashboard
 
-### Project Summary Page
+The dashboard includes the following interactive pages:
 
-**Content:**
+1. **Project Summary**:
+   - Overview of objectives, dataset, and methodology.
 
-- Introduction to the project and its objectives.
-- Overview of the datasets used.
-- Summary of Lydia's business requirements.
+2. **Feature Correlations**:
+   - Heatmaps of correlation matrices.
+   - Scatter plots of top correlated features.
 
-**Widgets/Elements:**
+3. **House Price Predictions**:
+   - Predicted sale prices for Lydia's inherited houses.
+   - Real-time prediction tool for any house.
 
-- Text blocks with project description.
-- Images or icons representing key aspects.
+4. **Model Performance**:
+   - Comparisons of trained models.
+   - Metrics and visualizations (e.g., residual plots, actual vs. predicted prices).
 
-### Feature Correlations Page
-
-**Content:**
-
-- Visualizations showing how house attributes correlate with sale price.
-- Insights from the data analysis.
-
-**Widgets/Elements:**
-
-- Heatmaps of correlation matrices.
-- Scatter plots of top correlated features.
-- Interactive elements to select features for visualization.
-
-### House Price Predictions Page
-
-**Content:**
-
-- Display of predicted sale prices for the four inherited houses.
-- Total predicted sale price for all inherited properties.
-- Real-time prediction tool for any house in Ames, Iowa.
-
-**Widgets/Elements:**
-
-- Tables showing predictions for inherited houses.
-- Input forms with sliders, number inputs, and dropdowns for user inputs.
-- Button to trigger prediction.
-- Display of predicted sale price based on user input.
-
-### Project Hypotheses Page
-
-**Content:**
-
-- Listing of project hypotheses.
-- Explanation of validation methods and results.
-- Visualizations supporting the hypotheses.
-
-**Widgets/Elements:**
-
-- Text blocks explaining hypotheses and findings.
-- Plots and charts demonstrating validation.
-
-### Model Performance Page
-
-**Content:**
-
-- Presentation of model evaluation metrics.
-- Comparison of different models tested.
-- Explanation of the machine learning pipeline.
-
-**Widgets/Elements:**
-
-- Tables showing performance metrics (MAE, RMSE, R² Score).
-- Graphs of actual vs. predicted prices.
-- Residual plots.
-- Text blocks outlining pipeline steps.
-
-## Unfixed Bugs
-
-At the time of deployment, there are **no known unfixed bugs**. All features and functionalities have been thoroughly tested and are working as expected.
+---
 
 ## Deployment
 
-### Heroku
+### Steps
 
-*The app live link is: [House Price Prediction Dashboard](https://your-app-name.herokuapp.com/)*
+1. **Set Up Environment**:
+   - Install dependencies:
+     ```bash
+     pip install -r requirements.txt
+     ```
 
-**Deployment Steps:**
+2. **Run Locally**:
+   - Start the dashboard:
+     ```bash
+     streamlit run app.py
+     ```
 
-1. **Set Up Repository:**
+3. **Deploy to Streamlit Cloud**:
+   - Push code to GitHub.
+   - Connect repository to Streamlit Cloud.
+   - Configure deployment (e.g., Python version, requirements file).
 
-   - Ensure that all code, including `app.py`, models, data files, and `requirements.txt`, is pushed to a GitHub repository.
-   - Include a `Procfile` and `runtime.txt` for Heroku deployment.
+---
 
-2. **Create a Heroku Account:**
+## Requirements
 
-   - Go to [Heroku](https://www.heroku.com/) and sign up for an account.
+- Python 3.11.10
+- Libraries:
+  - pandas
+  - numpy
+  - scikit-learn
+  - xgboost
+  - streamlit
+  - joblib
+  - pathlib
 
-3. **Install Heroku CLI (if deploying via command line):**
+---
 
-   - Download and install the Heroku CLI from the [official website](https://devcenter.heroku.com/articles/heroku-cli).
+## Known Bugs
 
-4. **Log In to Heroku via CLI:**
+- **None**: All features have been rigorously tested and validated.
 
-   ```bash
-   heroku login
+---
+
+## Future Enhancements
+
+- Enhance dashboard visualizations.
+- Implement ensemble stacking for improved predictive accuracy.
+- Automate data updates through web scraping.
+
+---
+
+## Credits
+
+- **Dataset**: [Kaggle Housing Prices](https://www.kaggle.com/codeinstitute/housing-prices-data)
+- **Tools**: Python, Streamlit, Scikit-Learn, XGBoost, Matplotlib
+
+---
+
+This README provides comprehensive details, ensuring clarity for both developers and stakeholders. It elaborates on decision-making, methodology, and deployment, delivering a high standard of documentation.
